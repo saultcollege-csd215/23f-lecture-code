@@ -21,11 +21,11 @@ public class DatabaseService {
     public static List<Subscriber> fetchSubscribers() {
         return List.of(
                 new Subscriber("alice@email.com", 0),
-                new Subscriber("bob@email.com", 13),
+                new Subscriber("bob@email.com", 23),
                 new Subscriber("charlie@email.com", 7),
                 new Subscriber("dan@email.com", 3),
                 new Subscriber("elise@email.com" , 0),
-                new Subscriber("freda@email.com", 10),
+                new Subscriber("freda@email.com", 20),
                 new Subscriber("gertrude@email.com", 2)
         );
     }

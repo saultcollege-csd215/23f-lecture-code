@@ -1,5 +1,7 @@
 package _03_staying_immutable.mutablejava.immutable;
 
+import _03_staying_immutable.withMethods.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,11 +62,11 @@ public class Main {
             if ( p.name().equals(name) ) {
                 // But since we are also changing the item in a specific element of the list we call the copy-on-write dyeHair that gives us a NEW person object
                 newList.set(i, dyeHair(p, color));
+                // OR using the withHairColor method:
+                // newList.set(i, p.withHairColor(color));
             }
         }
         return newList;
     }
-
-    public record Person(String name, int age, String hairColor) { }
 
 }

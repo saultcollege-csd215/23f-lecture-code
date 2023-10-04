@@ -1,5 +1,7 @@
 package _03_staying_immutable.mutablejava.mutable;
 
+import _03_staying_immutable.withMethods.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +33,4 @@ public class Main {
         }
     }
 
-    public record Person(String name, int age, String hairColor) { }
 }

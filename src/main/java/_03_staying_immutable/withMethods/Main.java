@@ -9,7 +9,11 @@ public class Main {
         var person2 = person.withName("Jane");
         System.out.println(person2);
 
-        var person3 = person2.withAge(25).withName("Betty").withHairColor("Gray");
+        var person3 = person2
+                        .withAge(25)
+                        .withName("Betty")
+                        .withHairColor("Gray");
+
         System.out.println(person3);
     }
 }

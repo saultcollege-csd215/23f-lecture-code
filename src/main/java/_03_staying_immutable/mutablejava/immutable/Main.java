@@ -27,12 +27,12 @@ public class Main {
     }
     // The original WRITE is the element removal (for which we can use copy-on-write to turn the write into a read)
     public static List<String> removeNthContact(List<String> list, int n) {
-//        List<String> newList = new ArrayList<String>(list);       // Make a copy
-//        newList.remove(n-1);                                // Update the copy
-//        return newList;                                           // Return the copy
+        List<String> newList = new ArrayList<String>(list);       // Make a copy
+        newList.remove(n-1);                                // Update the copy
+        return newList;                                           // Return the copy
 
         // OR using our ListUtils:
-        return ImmutableListUtils.remove(list, n-1);
+//        return ImmutableListUtils.remove(list, n-1);
     }
 
     // Avoiding Read-And-Write functions by returning two values

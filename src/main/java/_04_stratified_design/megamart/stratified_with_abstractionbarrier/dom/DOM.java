@@ -55,5 +55,8 @@ public class DOM {
         setTax(BusinessRules.calcTax(shoppingCartTotal));
     }
 
+    public static void displayCartTotal(Cart cart) {
+        System.out.println(cart.calcTotal());
+    }
 
 }

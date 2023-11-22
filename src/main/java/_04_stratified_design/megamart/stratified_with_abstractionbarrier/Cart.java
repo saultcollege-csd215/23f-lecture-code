@@ -14,24 +14,31 @@ import java.util.Map;
  * (There are two Cart classes implemented here; one using List<CartItem> and one using Map<String, CartItem>.
  * Try changing the CartRules layer to use the Map<String, CartItem> version and see that it still works!)
  */
+
 /*
 public class Cart {  // LIST IMPLEMENTATION
 
     private List<CartItem> cartItems;
 
 
-    public Cart(List<CartItem> cartItems) {
+    public Cart() {
+        this.cartItems = new ArrayList<CartItem>();
+    }
+
+    private Cart(List<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
     public Cart addItem(CartItem item) {
-        return new Cart(ListUtil.add(cartItems, item));
+        return new Cart(ListUtils.add(cartItems, item));
     }
 
     public double calcTotal() {
+        System.out.println("Calculating total...");
         var total = 0.0;
         for (CartItem item : cartItems) {
             total += item.price();
+            System.out.println(item.price());
         }
         return total;
     }
@@ -73,14 +80,17 @@ public class Cart {  // LIST IMPLEMENTATION
         return null;
     }
 }
-
- */
+*/
 
 public class Cart {  // MAP IMPLEMENTATION
     private Map<String, CartItem> cartItems;
 
 
-    public Cart(Map<String, CartItem> cartItems) {
+    public Cart() {
+        this.cartItems = new HashMap<String, CartItem>();
+    }
+
+    private Cart(Map<String, CartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -99,16 +109,13 @@ public class Cart {  // MAP IMPLEMENTATION
     // NOTE: Compare this method with the setPriceByName in the 'needswork' package.
     // For which one is it easier to understand the purpose of the code in the function body?  Which one is simpler?
     public Cart setPriceByName(String name, double price) {
-        // Using our new getItemByName method to simplify finding the item
-        var item = getItemByName(name);
-
-        if ( item == null ) {
-            return this;
+        if ( cartItems.containsKey("name") ) {
+            var item = cartItems.get(name);
+            // List operation is relegated to the low-level ListUtils layer
+            // Updating a CartItem is relegated to the CartItem layer
+            return new Cart(MapUtils.put(cartItems, item.name(), item.withPrice(price)));
         }
-
-        // List operation is relegated to the low-level ListUtils layer
-        // Updating a CartItem is relegated to the CartItem layer
-        return new Cart(MapUtils.put(cartItems, item.name(), item.withPrice(price)));
+        return this;
     }
 
 
@@ -119,11 +126,12 @@ public class Cart {  // MAP IMPLEMENTATION
     }
 
     public boolean isNameInCart(String name) {
-        return getItemByName(name) != null;
+        // return getItemByName(name) != null;
+        return cartItems.containsKey(name);
     }
 
     // This method encapsulates an operation that is used in many places; now we can reuse it simply by calling the method!
-    public CartItem getItemByName(String name) {
-        return cartItems.get(name);
-    }
+//    public CartItem getItemByName(String name) {
+//        return cartItems.get(name);
+//    }
 }

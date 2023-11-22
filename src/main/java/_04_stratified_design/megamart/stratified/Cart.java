@@ -45,14 +45,13 @@ public class Cart {
 
     public static boolean isNameInCart(List<CartItem> cart, String name) {
         // At first, we might write this function like this:
-        /*
-        for ( var item : cart ) {
-            if ( item.name().equals(name) ) {
-                return true;
-            }
-        }
-        return false;
-         */
+//        for ( var item : cart ) {
+//            if ( item.name().equals(name) ) {
+//                return true;
+//            }
+//        }
+//        return false;
+
 
         // But after writing getItemByName, we can recognize that lookup-by-name pattern again
         // and reuse it to perform the necessary calculation here!

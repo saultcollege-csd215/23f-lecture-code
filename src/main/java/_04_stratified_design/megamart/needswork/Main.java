@@ -70,7 +70,7 @@ public class Main {
         return amount * 0.13;
     }
 
-    // LAYER: Business logic (cart)
+    // LAYER: Business logic (cart rules)
     public static boolean getsFreeShipping(List<CartItem> cart) {
         return calcTotal(cart) >= 20.0;
     }
@@ -103,7 +103,7 @@ public class Main {
         return copy;
     }
 
-    // LAYER: Business logic (cart)
+    // LAYER: Business logic (cart rule)
     public static List<CartItem> addFreeTieClip(List<CartItem> cart) {
 
         // TODO: After adding the 'isInCart' function to our 'cart operations' layer, this code can be simplified!
@@ -116,7 +116,7 @@ public class Main {
             if ( item.name().equals("tie") ) {
                 hasTie = true;
             } else if ( item.name().equals("tie clip") ) {
-                hasTie = true;
+                hasTieClip = true;
             }
         }
 

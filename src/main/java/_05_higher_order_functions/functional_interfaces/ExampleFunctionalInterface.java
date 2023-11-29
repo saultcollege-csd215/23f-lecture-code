@@ -12,4 +12,5 @@ public interface ExampleFunctionalInterface {
     default void doSomethingElse() {
         System.out.println("Doing something else");
     }
+
 }

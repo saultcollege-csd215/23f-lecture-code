@@ -2,6 +2,8 @@ package _05_higher_order_functions.closure;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SwingGui {
     public static void main(String[] args) {
@@ -29,14 +31,31 @@ public class SwingGui {
         // var n = 0;  // See note in addActionListener below
         final var n = new int[] {0};  // This is a workaround to the problem of n not being effectively final
 
+
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Before Java 8:
+        // button.addActionListener(new MyButtonActionListener());
+
+        // After Java 8:
+        // button.addActionListener(e -> System.out.println("You clicked the button!"));
+
         button.addActionListener((e) -> {
             // n += 1;  // This doesn't work because n is not effectively final
             n[0] += 1;  // This works because n is a reference to an array, and the array is effectively final
                         // (i.e., the reference to the array cannot be changed, but the contents of the array can)
+
             label.setText("You clicked " + n[0] + " times!");
+
         });
         return button;
+    }
+
+    // Before Java 8:
+    private static class MyButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("You clicked the button!");
+        }
     }
 
 }

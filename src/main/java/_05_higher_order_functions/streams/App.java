@@ -39,6 +39,13 @@ public class App {
                 new Person("Bob", List.of(4, 5, 6)),
                 new Person("Carol", List.of(7, 8, 9))
         );
+
+        // Sort people by name
+        var sortedPeople = people.stream().sorted((p1, p2) -> p1.name().compareTo(p2.name())).toList();
+
+        // Sort people by the second number
+        var sortedPeople2 = people.stream().sorted((p1, p2) -> p1.luckyNumbers().get(1) - p2.luckyNumbers().get(1)).toList();
+
         var alice = people.stream().reduce(null, (found, next) -> next.name() == "Alice" ? next : null);  // Person(name=Alice, luckyNumbers=[1, 2, 3])
         var allLuckyNumbers = people.stream().flatMap(n -> n.luckyNumbers().stream()).toList(); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 

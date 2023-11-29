@@ -6,6 +6,16 @@ public class LoggingExample {
         System.out.println(s);
     }
 
+    public static void justCallIt(Runnable action) {
+        action.run();
+    }
+
+    // In JavaScript it would look more like this:
+    // function justCallIt(action) {
+    //     action();
+    // }
+
+
     // This function takes a runnable (a function that takes no arguments and returns nothing)
     // and runs it inside a try-catch block that logs errors
     public static void withLogging(Runnable action) {
@@ -51,9 +61,21 @@ public class LoggingExample {
     }
 
     public static void main(String[] args) {
+
+        System.out.println("Calling justCallIt()...");
+
+        // Since justCallIt() takes a Runnable, we can pass it a lambda expression
+        justCallIt(LoggingExample::aFuncThatNeedsLogging);
+
         // Since aFuncThatNeedsLogging() takes no parameters and returns nothing,
         // i.e., it matches the signature of Runnable's abstract method, we can use a function reference directly
         withLogging(LoggingExample::aFuncThatNeedsLogging);
+
+        withLogging(() -> {
+            var n = 42;
+            LoggingExample.anotherFuncThatNeedsLogging(n);
+
+        });
 
         // Since anotherFuncThatNeedsLogging() does NOT match the expected interface, we need to use a lambda expression
         // We can rely on closure to capture the value of n
